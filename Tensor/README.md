@@ -8,4 +8,4 @@
 nvcc -O2 tensor.cu -o tensor.exe
 ./tensor.exe
 ```
-可自由改动main函数内容
+可自由改动main函数内容以测试
