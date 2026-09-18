@@ -253,6 +253,12 @@ public:
     }
 
     Tensor relu_backward(const Tensor& grad_) const {
+        if(grad_.shape_ != shape_) {
+            throw std::runtime_error("shape mismatch")
+        }
+        if(grad_.storage_->device != storage_->device_){
+            throw std::runtime_error("device mismatch")
+        }
         Tensor dx_(shape_, storage_->device_);
         const float* g = grad_.storage_->data_ptr_.get();
         const float* x = storage_->data_ptr_.get();
@@ -296,6 +302,12 @@ public:
     }
 
     Tensor sigmoid_backward(const Tensor& grad_) const {
+        if(grad_.shape_ != shape_) {
+            throw std::runtime_error("shape mismatch")
+        }
+        if(grad_.storage_->device != storage_->device_){
+            throw std::runtime_error("device mismatch")
+        }
         Tensor dx_(shape_, storage_->device_);
         const float* g = grad_.storage_->data_ptr_.get();
         const float* x = storage_->data_ptr_.get();
